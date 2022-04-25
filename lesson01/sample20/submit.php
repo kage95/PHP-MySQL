@@ -7,8 +7,8 @@
     <title>sample20</title>
 </head>
 <body>
-    <?php if (!empty($_REQUEST['myname'])): ?>
-    <p>お名前:<?php echo htmlspecialchars($_REQUEST['my_name'], ENT_QUOTES) ;?></p>
+    <?php if (!empty($_POST['my_name'])): ?>
+    <p>お名前:<?php echo htmlspecialchars($_POST['my_name'], ENT_QUOTES) ;?></p>
     <?php endif; ?>
 </body>
 </html>
