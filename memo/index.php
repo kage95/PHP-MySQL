@@ -21,7 +21,7 @@ if (!$memos) {
     <p>→ <a href="input.html">新しいメモ</a></p>
     <?php while ($memo = $memos->fetch_assoc()): ?>
     <div>
-        <h2><a href="#"></a><?php echo htmlspecialchars(mb_substr($memo['memo'], 0, 50)); ?></h2>
+        <h2><a href="memo.php?id=<?php echo $memo['id']; ?>"><?php echo htmlspecialchars(mb_substr($memo['memo'], 0, 50)); ?></a></h2>
         <time><?php echo htmlspecialchars($memo['created_at']); ?></time>
     </div>
     <?php endwhile; ?>
