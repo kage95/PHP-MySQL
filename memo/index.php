@@ -5,8 +5,9 @@ $stmt = $db->prepare('select * from memos order by id desc limit ?, 5');
 if (!$stmt) {
     die($db->error);
 }
-$page = 5;
-$stmt->bind_param('i', $page);
+$page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+$start = ($page - 1) * 5;
+$stmt->bind_param('i', $start);
 $stmt->execute();
 ?>
 
@@ -22,7 +23,7 @@ $stmt->execute();
     <h1>メモ帳</h1>
 
     <p>→ <a href="input.html">新しいメモ</a></p>
-    <?php $stmt->bind_result($id, $memo, $created_id); ?>
+    <?php $stmt->bind_result($id, $memo, $created_at); ?>
     <?php while ($stmt->fetch()): ?>
     <div>
         <h2><a href="memo.php?id=<?php echo $id; ?>"><?php echo htmlspecialchars(mb_substr($memo, 0, 50)); ?></a></h2>
