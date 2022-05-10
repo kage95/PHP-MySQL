@@ -10,8 +10,7 @@
     <?php
     require('dbconnect.php');
     $stmt = $db->prepare('select * from memos where id=?');
-    if (!$stmt) {
-        die($db->error);
+    if (!$stmt) {     die($db->error);
     }
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $stmt->bind_param('i', $id);
